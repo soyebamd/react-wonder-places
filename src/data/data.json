@@ -1,0 +1,105 @@
+{
+  "site": {
+    "name": "WonderAtlas",
+    "tagline": "Explore countries, cultures, and iconic wonders.",
+    "heroImage": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600"
+  },
+  "countries": [
+    {
+      "id": 1,
+      "name": "India",
+      "continent": "Asia",
+      "capital": "New Delhi",
+      "wonder": "Taj Mahal",
+      "image": "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800",
+      "description": "India is a land of incredible diversity, where ancient traditions blend with modern innovation. From the snowy Himalayas in the north to the tropical beaches of Kerala in the south, the country offers breathtaking landscapes and rich cultural experiences. The Taj Mahal, one of the world's most celebrated monuments, symbolizes eternal love and attracts millions of visitors every year. India is also famous for its colorful festivals, delicious cuisine, spiritual heritage, and historic cities. With hundreds of languages and unique regional traditions, every journey across India feels like discovering a new world within a single nation."
+    },
+    {
+      "id": 2,
+      "name": "China",
+      "continent": "Asia",
+      "capital": "Beijing",
+      "wonder": "Great Wall of China",
+      "image": "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800",
+      "description": "China is one of the oldest civilizations in human history and combines remarkable traditions with rapid technological growth. The Great Wall of China stretches across mountains and valleys, standing as a symbol of determination and architectural brilliance. Visitors can explore ancient temples, imperial palaces, bustling megacities, and peaceful countryside villages. Chinese culture has influenced art, philosophy, cuisine, and innovation across the world for thousands of years. From the Forbidden City in Beijing to the stunning landscapes of Guilin and Zhangjiajie, China offers an unforgettable blend of history, culture, and natural beauty."
+    },
+    {
+      "id": 3,
+      "name": "Italy",
+      "continent": "Europe",
+      "capital": "Rome",
+      "wonder": "Colosseum",
+      "image": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800",
+      "description": "Italy is celebrated for its artistic heritage, historic landmarks, and world-famous cuisine. The Colosseum in Rome stands as a powerful reminder of the grandeur of the ancient Roman Empire. Beyond its history, Italy offers picturesque countryside, charming coastal towns, and vibrant cities filled with culture and creativity. Visitors enjoy authentic pasta, pizza, and regional specialties while exploring Renaissance masterpieces and iconic architecture. From Venice and Florence to the Amalfi Coast and Sicily, Italy provides an extraordinary journey through centuries of human achievement, beauty, and tradition."
+    },
+    {
+      "id": 4,
+      "name": "France",
+      "continent": "Europe",
+      "capital": "Paris",
+      "wonder": "Eiffel Tower",
+      "image": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=800",
+      "description": "France is renowned for its elegance, art, fashion, and culinary excellence. The Eiffel Tower, standing proudly in Paris, has become one of the most recognizable landmarks on Earth. Beyond the capital, visitors can discover charming villages, historic castles, beautiful vineyards, and breathtaking coastlines. French culture has shaped literature, painting, philosophy, and cuisine for generations. Whether strolling through museums, enjoying fresh pastries at a local café, or exploring the countryside of Provence, travelers experience a rich combination of history, romance, and modern sophistication throughout France."
+    },
+    {
+      "id": 5,
+      "name": "Egypt",
+      "continent": "Africa",
+      "capital": "Cairo",
+      "wonder": "Great Pyramid of Giza",
+      "image": "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?w=800",
+      "description": "Egypt is home to one of humanity's most fascinating ancient civilizations. The Great Pyramid of Giza remains the last surviving wonder of the ancient world and continues to inspire awe among visitors. The Nile River has shaped Egyptian life for thousands of years, supporting cities, agriculture, and trade. Travelers can explore magnificent temples, royal tombs, bustling markets, and desert landscapes unlike anywhere else on Earth. Egyptian history, mythology, and architecture reveal stories of powerful pharaohs, scientific achievements, and cultural traditions that still influence the world today."
+    },
+    {
+      "id": 6,
+      "name": "Jordan",
+      "continent": "Asia",
+      "capital": "Amman",
+      "wonder": "Petra",
+      "image": "https://images.unsplash.com/photo-1579606032821-4e6161c81bd3?w=800",
+      "description": "Jordan is a welcoming country known for its rich history and breathtaking desert scenery. Petra, carved directly into red sandstone cliffs, is among the world's most extraordinary archaeological sites. Beyond Petra, visitors can float in the Dead Sea, explore Roman ruins, and experience traditional Bedouin hospitality in Wadi Rum. Jordan serves as a crossroads of ancient civilizations and offers a unique blend of cultural heritage and natural beauty. Its warm people, historic treasures, and dramatic landscapes make it one of the Middle East's most remarkable travel destinations."
+    },
+    {
+      "id": 7,
+      "name": "Peru",
+      "continent": "South America",
+      "capital": "Lima",
+      "wonder": "Machu Picchu",
+      "image": "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800",
+      "description": "Peru is famous for its spectacular mountains, ancient civilizations, and vibrant cultural traditions. Machu Picchu, the legendary Incan city high in the Andes, attracts travelers from around the world. The country offers diverse environments, including rainforests, deserts, and high-altitude landscapes. Visitors can enjoy traditional music, colorful festivals, and internationally acclaimed cuisine. Peru's indigenous heritage remains deeply connected to daily life, creating an authentic cultural experience. From the Sacred Valley to Lake Titicaca and the Amazon Basin, Peru provides endless opportunities for exploration and adventure."
+    },
+    {
+      "id": 8,
+      "name": "Brazil",
+      "continent": "South America",
+      "capital": "Brasilia",
+      "wonder": "Christ the Redeemer",
+      "image": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800",
+      "description": "Brazil is the largest country in South America and is celebrated for its energy, music, and natural wonders. The iconic Christ the Redeemer statue overlooks Rio de Janeiro and symbolizes peace and hospitality. Brazil is home to the Amazon rainforest, extraordinary wildlife, beautiful beaches, and world-famous festivals such as Carnival. The country's diverse population has created a rich cultural identity expressed through dance, cuisine, and art. Whether exploring vibrant cities or untouched natural landscapes, visitors experience the warmth, excitement, and beauty that define Brazil."
+    },
+    {
+      "id": 9,
+      "name": "Australia",
+      "continent": "Oceania",
+      "capital": "Canberra",
+      "wonder": "Great Barrier Reef",
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800",
+      "description": "Australia is known for its unique wildlife, vast landscapes, and outdoor lifestyle. The Great Barrier Reef is the world's largest coral reef system and a treasure of marine biodiversity. Visitors can experience modern cities, ancient Aboriginal cultures, dramatic deserts, and pristine coastlines within a single country. Australia offers opportunities for adventure, from surfing and hiking to exploring national parks and underwater ecosystems. The nation's commitment to preserving its natural heritage ensures that travelers can enjoy some of the planet's most extraordinary environments for generations to come."
+    },
+    {
+      "id": 10,
+      "name": "United States",
+      "continent": "North America",
+      "capital": "Washington, D.C.",
+      "wonder": "Grand Canyon",
+      "image": "https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=800",
+      "description": "The United States is a diverse nation featuring world-famous cities, natural wonders, and cultural influences from around the globe. The Grand Canyon stands as one of Earth's most breathtaking geological formations, attracting millions of visitors every year. From the skyscrapers of New York to the beaches of California and the mountains of Alaska, the country offers remarkable variety in landscapes and experiences. American innovation, entertainment, and cultural contributions have shaped global trends for decades. Travelers can explore national parks, historic landmarks, and vibrant communities across all fifty states."
+    }
+  ],
+  "travelTips": [
+    "Respect local culture",
+    "Carry emergency contacts",
+    "Keep digital copies of documents",
+    "Learn a few local phrases"
+  ]
+}
