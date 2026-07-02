@@ -4,8 +4,67 @@ import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import data from "./data/data.json";
 import Card from "./components/card.jsx";
-import Details from "./components/details.jsx";
+import OpenAI from "openai";
+import { HfInference } from "@huggingface/inference";
+
 import "./App.css";
+
+// OpenAI API configuration
+// setup
+
+const chooseAI = "openai"; // "openai" or "huggingface"
+
+let AI_KEY;
+let AI_RESPONSE;
+let AI_MODEL;
+
+if (chooseAI == "huggingface") {
+  AI_KEY = new HfInference(import.meta.env.VITE_API_HF_KEY);
+  AI_MODEL = import.meta.env.VITE_API_HF_MODEL;
+} else if (chooseAI == "openai") {
+  AI_KEY = new OpenAI({
+    apiKey: import.meta.env.VITE_API_KEY,
+    baseURL: import.meta.env.VITE_API_URL,
+    dangerouslyAllowBrowser: true,
+  });
+
+  AI_MODEL = import.meta.env.VITE_API_MODEL;
+}
+
+async function getAIdata(prompt) {
+  const prompMessage = [
+    {
+      role: "system",
+      content:
+        "Give details in 200 words. Include culture, tourism, and interesting facts.",
+    },
+    {
+      role: "user",
+      content: prompt,
+    },
+  ];
+
+  try {
+    let response;
+    if (chooseAI == "openai") {
+      response = await AI_KEY.chat.completions.create({
+        model: AI_MODEL,
+        messages: prompMessage,
+        max_tokens: 1024,
+      });
+    } else if (chooseAI == "huggingface") {
+      response = await AI_KEY.chatCompletion({
+        model: AI_MODEL,
+        messages: prompMessage,
+        max_tokens: 1024,
+      });
+    }
+
+    return response.choices[0].message.content;
+  } catch (error) {
+    return `${error} Failed to get AI response.`;
+  }
+}
 
 function App() {
   // console.log("data", data.site.name);
@@ -14,54 +73,40 @@ function App() {
   const tagLine = data.site.tagline;
   const mainHeroImg = data.site.heroImage;
 
-  const [desc, showDesc] = useState(false);
+  const [popup, setPopup] = useState("");
 
-  const [descID, setDescID] = useState("");
+  const [AIresponse, setAIresponse] = useState(null);
 
-  const handleDesc = (id) => {
-    setDescID(
-      data.countries.map((item) => {
-        return item.id == id ? (
-          <>
-            <div
-              className="popup-hero"
-              style={{
-                backgroundImage: `
-      linear-gradient(
-        rgba(0, 0, 0, 0.35),
-        rgba(0, 0, 0, 0.85)
-      ),
-      url(${item.image})
-    `,
-              }}
-            >
-              <h2>{item.name}</h2>
+  const [location, setLocation] = useState("");
 
-              <p>
-                🏛️ <strong>Capital:</strong> {item.capital}
-              </p>
+  const handleDesc = async (id) => {
+    const selectCountry = data.countries.find((country) => country.id === id);
 
-              <p>
-                🌍 <strong>Continent:</strong> {item.continent}
-              </p>
+    if (!selectCountry) return;
 
-              <p>
-                🏆 <strong>Famous Wonder:</strong> {item.wonder}
-              </p>
-            </div>
+    try {
+      setPopup(selectCountry);
+      setLocation(selectCountry.capital);
+      setAIresponse("Loading...");
 
-            <p className="popup-description">{item.description}</p>
-          </>
-        ) : (
-          ""
-        );
-      }),
-    );
+      const aiData = await getAIdata(
+        `Give details about ${selectCountry.name} country. that have capital ${selectCountry.capital} and located in ${selectCountry.continent} continent. Famous wonder is ${selectCountry.wonder}.`,
+      );
+      setAIresponse(aiData);
+
+      // getAIdata(
+      //   `Please give me some details about ${selectCountry.name} country`,
+      // );
+    } catch (error) {
+      console.log(" ", error);
+      setAIresponse("");
+    }
   };
 
   const closeDesc = (e) => {
     e.preventDefault();
-    setDescID("");
+    setPopup("");
+    setAIresponse(null);
   };
 
   const countries = data.countries.map((item) => {
@@ -88,18 +133,56 @@ function App() {
           Explore More...
         </button>
 
-        {descID && (
-          <>
-            {" "}
-            <div className="desc">
-              {descID}{" "}
-              {
-                <a href="#" className="desc-close" onClick={closeDesc}>
-                  X
-                </a>
-              }
+        {popup && (
+          <div className="desc">
+            <div className="desc-content">
+              <button className="desc-close" onClick={closeDesc}>
+                ✕
+              </button>
+
+              <div
+                className="popup-hero"
+                style={{
+                  backgroundImage: `
+            linear-gradient(
+              rgba(0,0,0,0.5),
+              rgba(0,0,0,0.0)
+            ),
+            url(${popup.image})
+          `,
+                }}
+              >
+                <h2>{popup.name}</h2>
+
+                <p>
+                  🏛️ <strong>Capital:</strong> {popup.capital}
+                </p>
+
+                <p>
+                  🌍 <strong>Continent:</strong> {popup.continent}
+                </p>
+
+                <p>
+                  🏆 <strong>Famous Wonder:</strong> {popup.wonder}
+                </p>
+              </div>
+
+              <p className="popup-description">{AIresponse || "Loading..."}</p>
+
+              {location && AIresponse && (
+                <>
+                  <iframe
+                    width="80%"
+                    height="400"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(location)}&output=embed`}
+                  />
+                </>
+              )}
             </div>
-          </>
+          </div>
         )}
       </section>
       <div className="ticks"></div>
