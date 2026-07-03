@@ -4,67 +4,12 @@ import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import data from "./data/data.json";
 import Card from "./components/card.jsx";
-import OpenAI from "openai";
+
 import { HfInference } from "@huggingface/inference";
+import ReactMarkdown from "react-markdown";
+import GetAIdata from "./data/ai-response.js";
 
 import "./App.css";
-
-// OpenAI API configuration
-// setup
-
-const chooseAI = "openai"; // "openai" or "huggingface"
-
-let AI_KEY;
-let AI_RESPONSE;
-let AI_MODEL;
-
-if (chooseAI == "huggingface") {
-  AI_KEY = new HfInference(import.meta.env.VITE_API_HF_KEY);
-  AI_MODEL = import.meta.env.VITE_API_HF_MODEL;
-} else if (chooseAI == "openai") {
-  AI_KEY = new OpenAI({
-    apiKey: import.meta.env.VITE_API_KEY,
-    baseURL: import.meta.env.VITE_API_URL,
-    dangerouslyAllowBrowser: true,
-  });
-
-  AI_MODEL = import.meta.env.VITE_API_MODEL;
-}
-
-async function getAIdata(prompt) {
-  const prompMessage = [
-    {
-      role: "system",
-      content:
-        "Give details in 200 words. Include culture, tourism, and interesting facts.",
-    },
-    {
-      role: "user",
-      content: prompt,
-    },
-  ];
-
-  try {
-    let response;
-    if (chooseAI == "openai") {
-      response = await AI_KEY.chat.completions.create({
-        model: AI_MODEL,
-        messages: prompMessage,
-        max_tokens: 1024,
-      });
-    } else if (chooseAI == "huggingface") {
-      response = await AI_KEY.chatCompletion({
-        model: AI_MODEL,
-        messages: prompMessage,
-        max_tokens: 1024,
-      });
-    }
-
-    return response.choices[0].message.content;
-  } catch (error) {
-    return `${error} Failed to get AI response.`;
-  }
-}
 
 function App() {
   // console.log("data", data.site.name);
@@ -89,7 +34,7 @@ function App() {
       setLocation(selectCountry.capital);
       setAIresponse("Loading...");
 
-      const aiData = await getAIdata(
+      const aiData = await GetAIdata(
         `Give details about ${selectCountry.name} country. that have capital ${selectCountry.capital} and located in ${selectCountry.continent} continent. Famous wonder is ${selectCountry.wonder}.`,
       );
       setAIresponse(aiData);
@@ -167,7 +112,9 @@ function App() {
                 </p>
               </div>
 
-              <p className="popup-description">{AIresponse || "Loading..."}</p>
+              <section className="popup-description">
+                <ReactMarkdown children={AIresponse || "Loading..."} />
+              </section>
 
               {location && AIresponse && (
                 <>

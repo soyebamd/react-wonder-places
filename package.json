@@ -13,7 +13,8 @@
     "@huggingface/inference": "^4.13.22",
     "openai": "^6.45.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-markdown": "^8.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
